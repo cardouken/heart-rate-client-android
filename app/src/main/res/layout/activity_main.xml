@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.polar.androidblesdk.MainActivity">
+    tools:context="ee.uustal.heartrateclient.MainActivity">
 
     <Button
-        android:id="@+id/broadcast_button"
+        android:id="@+id/listener_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
@@ -20,13 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/scan_devices" />
-    <!--        android:textColor="s"-->
-
-    <Button
-        android:id="@+id/auto_connect_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/auto_connect_toggle" />
 
     <Button
         android:id="@+id/connect_button"
