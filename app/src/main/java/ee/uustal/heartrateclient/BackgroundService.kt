@@ -22,12 +22,15 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
 import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
 
 class BackgroundService : Service() {
     companion object {
         private const val TAG = "BackgroundService"
         private const val API_LOGGER_TAG = "BACKGROUND API LOGGER"
     }
+
+    private var lastRequest: LocalDateTime? = null
 
     override fun onBind(intent: Intent): IBinder? {
         return null
@@ -43,6 +46,12 @@ class BackgroundService : Service() {
     }
 
     private fun postResult(polarData: PolarHrBroadcastData) {
+        if (lastRequest != null && LocalDateTime.now().minusSeconds(2).isBefore(lastRequest)) {
+            Log.d(API_LOGGER_TAG, "Last request sent less than 2 seconds ago, ignoring")
+            return
+        }
+
+        lastRequest = LocalDateTime.now();
         val retrofit = Retrofit.Builder()
             .baseUrl("http://health.uustal.ee")
             .build()
