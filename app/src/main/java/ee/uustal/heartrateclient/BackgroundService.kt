@@ -44,7 +44,7 @@ class BackgroundService : Service() {
 
     private fun postResult(polarData: PolarHrBroadcastData) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://rdp.uustal.ee:8080")
+            .baseUrl("http://health.uustal.ee")
             .build()
 
         val retrofitService = retrofit.create(APIService::class.java)
